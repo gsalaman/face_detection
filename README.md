@@ -14,3 +14,7 @@ https://www.datacamp.com/community/tutorials/face-detection-python-opencv
 
 I'm gonna start by seeing if I can get a the algos working offline on a simple jpg.
 
+## RPI installs
+Following instructions here:
+https://tutorials-raspberrypi.com/installing-opencv-on-the-raspberry-pi/
+
