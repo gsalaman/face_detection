@@ -12,6 +12,8 @@ https://www.pyimagesearch.com/2018/02/26/face-detection-with-opencv-and-deep-lea
 
 https://www.datacamp.com/community/tutorials/face-detection-python-opencv
 
+https://www.learnopencv.com/object-tracking-using-opencv-cpp-python/
+
 I'm gonna start by seeing if I can get a the algos working offline on a simple jpg.
 
 ## RPI installs
@@ -23,6 +25,7 @@ Not really happy.  Next try:
 https://www.pyimagesearch.com/2018/09/26/install-opencv-4-on-your-raspberry-pi/
 
 Still busted.  First line of this seemed to work:
+```
 sudo apt-get install python3-opencv
 sudo apt-get install libhdf5-dev
 sudo apt-get install libhdf5-serial-dev
@@ -30,3 +33,9 @@ sudo apt-get install libatlas-base-dev
 sudo apt-get install libjasper-dev 
 sudo apt-get install libqtgui4 
 sudo apt-get install libqt4-test
+```
+Yup...now I'm happy.  Next steps:
+* try this with a real Pi Camera rather than off the shel images.  Tweak image sizes, detection critera, and check speeds.  Does this need to go offline?
+* Do a pan framework for a servo (3d print)
+* Control said servo with the Pi
+* Combine tracker and pan
