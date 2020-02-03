@@ -48,4 +48,14 @@ need to enable via sudo raspi-config
 also needed sudo pip3 install opencv-contrib-python...but that broke everything.
 Did the uninstall...back to normal.
 
-HOWEVER....the apt-get version does 3.2, but I need at least 3.3.  Doing a pip3 install got me to 4.x, but then I needed other libararies.  Did the jasper-dev, libqtgui4, libqt4-test...still issues.
+HOWEVER....the apt-get version does 3.2, but I need at least 3.3.  Doing a pip3 install got me to 4.x, but then I needed other libararies.  Did the jasper-dev, libqtgui4, libqt4-test...still issues.  Back to the 3.2 version and haar for now.
+
+# Feb 3 notes
+Pan-only tracker online in track.py.
+
+Does very rough servo tracking, but has 2 issues:
+* Camera field of view a little too narrow.  Maybe implement "search" mode?
+* Latency is WAAAAY too great...sometimes order of 1s per update.  Checking individual steps:
+  * Snapping the pic takes 1/2 second.  First low-hanging fruit...import directly?
+  * Import takes 50 ms.  Fine.
+  * Detection is 300 ms...a little long.  After we get the direct import, we can chase this...first try deep learning, then try offline?
