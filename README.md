@@ -59,3 +59,8 @@ Does very rough servo tracking, but has 2 issues:
   * Snapping the pic takes 1/2 second.  First low-hanging fruit...import directly?
   * Import takes 50 ms.  Fine.
   * Detection is 300 ms...a little long.  After we get the direct import, we can chase this...first try deep learning, then try offline?
+
+Camera tweak:  direct import is about as long.  Going to "continous mode" stream cuts this WAAAY down:  << 1 ms.
+
+Next issue: servo tracking.  Current loop does a PWM write, then waits, then turns it off.  The wait will delay the camera loop, so we want it to be exact.  Changing to always listen to the PWM introduces considerable jitter...I assume that's due to the Pi doing SW PWM.  Maybe try a servo hat?
+
