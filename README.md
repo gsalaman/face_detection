@@ -40,6 +40,10 @@ Yup...now I'm happy.  Next steps:
 * Control said servo with the Pi
 * Combine tracker and pan
 
+## Camera:
+picamera looks to already be installed.
+need to enable via sudo raspi-config
+
 # DNN:
 also needed sudo pip3 install opencv-contrib-python...but that broke everything.
 Did the uninstall...back to normal.
