@@ -43,3 +43,5 @@ Yup...now I'm happy.  Next steps:
 # DNN:
 also needed sudo pip3 install opencv-contrib-python...but that broke everything.
 Did the uninstall...back to normal.
+
+HOWEVER....the apt-get version does 3.2, but I need at least 3.3.  Doing a pip3 install got me to 4.x, but then I needed other libararies.  Did the jasper-dev, libqtgui4, libqt4-test...still issues.
