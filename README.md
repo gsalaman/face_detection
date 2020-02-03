@@ -39,3 +39,7 @@ Yup...now I'm happy.  Next steps:
 * Do a pan framework for a servo (3d print)
 * Control said servo with the Pi
 * Combine tracker and pan
+
+# DNN:
+also needed sudo pip3 install opencv-contrib-python...but that broke everything.
+Did the uninstall...back to normal.
