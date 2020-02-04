@@ -2,6 +2,7 @@ import cv2
 import sys
 import RPi.GPIO as GPIO
 from picamera import PiCamera
+from picamera.array import PiRGBArray
 import time
 from datetime import datetime
 
@@ -9,8 +10,10 @@ camera = PiCamera()
 camera_x=640
 camera_y=480
 camera.resolution = (camera_x, camera_y)
+camera.framerate = 32
+rawCapture = PiRGBArray(camera, size=(640,480))
+time.sleep(.1)  # camera warmup time
 
-imagePath = "temp.jpg" 
 cascPath = "haarcascade_frontalface_default.xml"
 
 faceCascade = cv2.CascadeClassifier(cascPath)
@@ -21,23 +24,23 @@ GPIO.setup(servo_pin, GPIO.OUT)
 pwm=GPIO.PWM(servo_pin, 50)
 pwm.start(0)
 
-def setAngle(angle, servo_pin):
+def setAngle(angle, servo_pin, wait):
   duty = angle/18 + 2
   GPIO.output(servo_pin, True)
   pwm.ChangeDutyCycle(duty)
-  time.sleep(.05)
+  time.sleep(wait)
   GPIO.output(servo_pin, False)
   pwm.ChangeDutyCycle(0)
 
 current_x = 90
-setAngle(current_x, servo_pin)
+setAngle(current_x, servo_pin, 1)
 
 try:
-  while True:
+  for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=True):
     start_time = datetime.now()
 
     print("snapping pic")
-    camera.capture(imagePath)
+    image = frame.array
     
     snap_time = datetime.now()
     deltaT = snap_time - start_time
@@ -45,7 +48,6 @@ try:
     
 
     print("importing pic")
-    image = cv2.imread(imagePath)
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
   
     import_time = datetime.now()
@@ -78,13 +80,13 @@ try:
       move_threshold = 20
       if (center[0] + move_threshold < camera_x / 2):
         if (current_x > 10):
-          current_x = current_x - 5
-          setAngle(current_x, servo_pin)
+          current_x = current_x - 2 
+          setAngle(current_x, servo_pin, .1)
           print("move ---")
       elif (center[0] - move_threshold > camera_x / 2):
         if (current_x < 170):
-          current_x = current_x + 5
-          setAngle(current_x, servo_pin)
+          current_x = current_x + 2
+          setAngle(current_x, servo_pin, .1)
           print("move +++")
 
     cv2.imshow("Faces Detected", image)
@@ -95,8 +97,9 @@ try:
 
     cv2.waitKey(50)
 
-    
+
+    rawCapture.truncate(0)
     
 
 except KeyboardInterrupt:
-   pass
+   rawCapture.truncate(0)
