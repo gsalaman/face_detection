@@ -83,8 +83,11 @@ Can't find snapd.  Time to go back and redo the OS.  :(
 (And then, I realized my pi wasn't on the network....)
 Went back to first step...gave me warning that must be accepted explicitly becuase it's old stable.  
 Update OS:
-`sudo apt update`
-`sudo apt dist-upgrade`
-`sudo apt clean`
-`sudo reboot`
+`sudo apt update` 
+`sudo apt dist-upgrade`   <- took a WHILE!!!
+`sudo apt clean`  
+`sudo reboot`  
+
+...and life looks good...back to the beginning...
+
 
