@@ -64,3 +64,7 @@ Camera tweak:  direct import is about as long.  Going to "continous mode" stream
 
 Next issue: servo tracking.  Current loop does a PWM write, then waits, then turns it off.  The wait will delay the camera loop, so we want it to be exact.  Changing to always listen to the PWM introduces considerable jitter...I assume that's due to the Pi doing SW PWM.  Maybe try a servo hat?
 
+# 10-17-21 OpenCV install notes
+Didn't get these working, so I'm trying a new link that looks promising.  I think I'll actually have to build OpenCV.
+https://www.youtube.com/watch?v=rdBTLOx0gi4
+
