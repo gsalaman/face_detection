@@ -90,4 +90,55 @@ Update OS:
 
 ...and life looks good...back to the beginning...
 
+Note:  still get "can't expand filesystem (NOOBS).
+The initial update/upgrade didn't' do anything....duh.  Just updated.
+
+Snapd now installs.
+
+cmake step doesnt' work....trying a reboot...  
+oh, look, it's:
+`sudo snap install cmake --classic`  
+(not snapd)
+
+`sudo apt-get install python3-dev`  (already newest)
+
+`wget -O opencv.zip https://github.com/opencv/opencv/archive/4.0.0.zip`  (note dual "opencv's" in the path...
+
+`wget -O opencv_contrib.zip https://github.com/opencv/opencv_contrib/archive/4.0.0.zip`  
+
+`unzip opencv.zip`
+
+`unzip opencv_contrib.zip`
+
+`pip install numpy`  yes, this does python 2.7...
+
+Make a build dir...
+```
+cd ~/opencv-4.0.0
+mkdir build
+cd build
+```
+
+Compile command:
+```
+cmake -D CMAKE_BUILD_TYPE=RELEASE \
+    -D CMAKE_INSTALL_PREFIX=/usr/local \
+    -D OPENCV_EXTRA_MODULES_PATH=~/opencv_contrib-4.0.0/modules \
+    -D ENABLE_NEON=ON \
+    -D ENABLE_VFPV3=ON \
+    -D BUILD_TESTS=OFF \
+    -D WITH_TBB=OFF \
+    -D INSTALL_PYTHON_EXAMPLES=OFF \
+    -D BUILD_EXAMPLES=OFF ..
+ ```
+ ...and then:  
+ `make -j4`
+ 
+ If that fails, follow it up with a `make -j1`
+ 
+ 
+ 
+ 
+
+
 
