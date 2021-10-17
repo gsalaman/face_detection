@@ -136,6 +136,12 @@ cmake -D CMAKE_BUILD_TYPE=RELEASE \
  
  If that fails, follow it up with a `make -j1`
  
+ J4 worked for me.
+ 
+ Last:
+ ```
+ sudo apt-get install libovencv-dev python-opencv
+ ```
  
  
  
