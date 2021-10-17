@@ -68,3 +68,23 @@ Next issue: servo tracking.  Current loop does a PWM write, then waits, then tur
 Didn't get these working, so I'm trying a new link that looks promising.  I think I'll actually have to build OpenCV.
 https://www.youtube.com/watch?v=rdBTLOx0gi4
 
+Confirm file system  is expanded  (raspi-config, advanced)
+Claims not supported, as we're running NOOBS.  I'm gonna try my way through, but if I hit roadblocks, I'm gonna re-install the OS.
+
+`sudo apt-get update && sudo apt-get upgrade`
+Loads of errors....maybe my OS not supported?  Moving on just in case...
+
+`sudo apt install snapd`
+(also failed)
+
+`sudo snapd install cmake --classic`
+Can't find snapd.  Time to go back and redo the OS.  :(
+
+(And then, I realized my pi wasn't on the network....)
+Went back to first step...gave me warning that must be accepted explicitly becuase it's old stable.  
+Update OS:
+`sudo apt update`
+`sudo apt dist-upgrade`
+`sudo apt clean`
+`sudo reboot`
+
